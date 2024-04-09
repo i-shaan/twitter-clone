@@ -13,7 +13,7 @@ function App() {
   <div className="flex">
     {/* Sidebar */}
   <Sidebar/>
-  {/* FEED */}
+  
   <Feed/>
   <News/>
   </div>
