@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles/Feed.css"
 import TweetBox from "./TweetBox";
+import Posts from "./Posts"
 const Feed = () => {
   return (
     <div className="xl:w-[38%] w-[100%]   border-r border-gray-300 flex flex-col ">
@@ -12,7 +13,10 @@ const Feed = () => {
       <div className=" h-[90vh]  z-[1] overflow-y-auto scrollbar-none ">
         
       <TweetBox/>
-       <Posts/ >
+      <Posts/>
+      <Posts/>
+      <Posts/>
+     
       </div>
     </div>
   );

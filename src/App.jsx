@@ -2,6 +2,7 @@ import Sidebar from "./Sidebar"
 
 import Feed from "./Feed"
 import News from "./News"
+import Posts from "./Posts"
 
 
 
@@ -13,7 +14,7 @@ function App() {
   <div className="flex">
     {/* Sidebar */}
   <Sidebar/>
-  
+
   <Feed/>
   <News/>
   </div>
