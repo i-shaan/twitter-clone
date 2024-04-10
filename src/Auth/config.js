@@ -2,15 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import {collection, getFirestore,getDocs} from "firebase/firestore"
-
-// Import the functions you need from the SDKs you need
-
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { onSnapshot } from "firebase/firestore";
+import { orderBy } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCXqnzv4OKSa_vqczQyOQiQiq8M1MHxVH0",
   authDomain: "twitter-47a6e.firebaseapp.com",
@@ -27,18 +20,16 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const db =getFirestore();
 const colRef = collection(db,'posts')
-getDocs(colRef)
-.then((snapshot)=>{
-  let books=[];
+let posts = []
+getDocs(colRef).then((snapshot)=>{
+
   snapshot.docs.forEach((doc)=>{
-    books.push({...doc.data(),id:doc.id})
-  
+    posts.push({...doc.data(),id:doc.id})
   })
-  console.log(books)
-}).catch(error=>{
-  console.log(error.message)
+  console.log(posts)
+
 })
 const auth = getAuth();
 const provider = new GoogleAuthProvider(); // Note the 'new' keyword here
 
-export { auth, provider,colRef };
+export { auth, provider,colRef,posts,db };
