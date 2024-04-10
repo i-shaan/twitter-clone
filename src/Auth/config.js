@@ -1,9 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import {collection, getFirestore,getDocs} from "firebase/firestore"
-import { onSnapshot } from "firebase/firestore";
-import { orderBy } from "firebase/firestore";
+import {getDocs} from "firebase/firestore"
+
+
+import { collection, getFirestore, addDoc, query, orderBy, onSnapshot } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCXqnzv4OKSa_vqczQyOQiQiq8M1MHxVH0",
   authDomain: "twitter-47a6e.firebaseapp.com",

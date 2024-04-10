@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-const Sidebar = () => {
+const Sidebar = ({onBookmarkClick,onHomeClick}) => {
   const [value,setValue] = useState('')
   var name;
   const handleClick =()=>{
@@ -41,11 +41,11 @@ const Sidebar = () => {
   
   <div className='xl:p-2 xl:ml-[15%] m-0'>
         <Options Icon={XIcon} text=""/>
-        <Options Icon={HomeIcon} text="Home"/>
+        <span onClick={onHomeClick}><Options Icon={HomeIcon} text="Home"/></span>
         <Options Icon={SearchIcon} text="Explore"/>
         <Options Icon={NotificationsNoneIcon} text="Notifications"/>
         <Options Icon={MailOutlineIcon} text="Messages"/>
-        <Options Icon={BookmarkBorderOutlinedIcon} text="Bookmarks"/>
+        <span onClick={onBookmarkClick}><Options Icon={BookmarkBorderOutlinedIcon} text="Bookmarks"/></span>
         <Options Icon={PermIdentityOutlinedIcon} text="Profile"/>
         <Options Icon={MoreHorizOutlinedIcon} text="More"/>
         <div className=' p-[12px]'>

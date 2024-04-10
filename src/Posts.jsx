@@ -6,6 +6,8 @@ import RepeatIcon from '@mui/icons-material/Repeat';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PublishIcon from '@mui/icons-material/Publish';
 import Avatar from "@mui/material/Avatar";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 const Post = ({ displayName, username, verified, text, image, avatar })=>{
     return (
       <div className="flex items-start border-b border-gray-300 pb-10" >
@@ -33,8 +35,10 @@ const Post = ({ displayName, username, verified, text, image, avatar })=>{
           <div className="flex justify-between mt-20">
             <ChatBubbleOutlineIcon fontSize="small" />
             <RepeatIcon fontSize="small" />
+            <button ><BookmarkBorderIcon  fontSize="small"/></button>
             <FavoriteBorderIcon fontSize="small" />
             <PublishIcon fontSize="small" />
+
           </div>
         </div>
       </div>
