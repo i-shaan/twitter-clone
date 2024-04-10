@@ -1,8 +1,29 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-
+import { useState } from "react";
 import { deepPurple } from "@mui/material/colors";
+// import { db } from "./Auth/config";
+import { colRef } from "./Auth/config";
+import { addDoc } from "firebase/firestore";
 const TweetBox = () => {
+  const [tweetMessage, setTweetMessage] = useState("");
+  const sendTweet = (e) => {
+    e.preventDefault();
+
+  addDoc(colRef,{
+      displayName: "Rafeh Qazi",
+      username: "cleverqazi",
+      // verified: true,
+      text: tweetMessage,
+      // image: "",
+      // avatar:
+      //   "https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png",
+    });
+
+    setTweetMessage("");
+
+  };
+ 
   return (
     <div className="h-auto   flex pt-[2%] border-b border-gray-300 ">
       <div className="w-[7vh] flex justify-center  ">
@@ -15,10 +36,11 @@ const TweetBox = () => {
       <div className="w-full p-[2%]  px-2 flex flex-col ">
         <textarea
           className="block w-full h-[5vh] border-none focus:border-none active:border-none outline-none overflow-hidden overflow-y-auto resize-none "
-          placeholder="What is happening?!"
+          placeholder="What is happening?!" onChange={(e) => setTweetMessage(e.target.value)}
+          value={tweetMessage} 
         />
         <div className="my-1  flex justify-end ">
-          <button className="bg-[#1DA1F2] hover:bg-[#1D9BF0] text-white font-bold px-4 py-2 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600">
+          <button className="bg-[#1DA1F2] hover:bg-[#1D9BF0] text-white font-bold px-4 py-2 rounded-3xl focus:outline-none focus:ring-2 focus:ring-blue-600" type="submit" onClick={sendTweet} >
             Post
           </button>
         </div>
