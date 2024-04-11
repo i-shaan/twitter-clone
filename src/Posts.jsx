@@ -8,7 +8,25 @@ import PublishIcon from '@mui/icons-material/Publish';
 import Avatar from "@mui/material/Avatar";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-const Post = ({ displayName, username, verified, text, image, avatar })=>{
+import { getDocs } from "firebase/firestore";
+import { colRef } from "./Auth/config";
+import { getDoc } from "firebase/firestore";
+
+import { useState } from "react";
+const Post = ({ id,displayName, username, verified, text, image, avatar, onBookmarkClick })=>{
+  const [bookmarked, setBookmarked] = useState(false);
+  const handleBookmark =  () =>{
+    onBookmarkClick(id);
+// try{
+//   const snapshot = await getDocs(colRef);
+  
+//   const postData = snapshot.docs.map((doc) => doc.data());
+
+// }
+// catch(error){
+//   console.log(error.message);
+// }
+  }
     return (
       <div className="flex items-start border-b border-gray-300 pb-10" >
         <div className="p-4">
@@ -35,7 +53,9 @@ const Post = ({ displayName, username, verified, text, image, avatar })=>{
           <div className="flex justify-between mt-20">
             <ChatBubbleOutlineIcon fontSize="small" />
             <RepeatIcon fontSize="small" />
-            <button ><BookmarkBorderIcon  fontSize="small"/></button>
+            <button onClick={handleBookmark}>
+            {bookmarked ? <BookmarkIcon fontSize="small" /> : <BookmarkBorderIcon fontSize="small" />}
+          </button>
             <FavoriteBorderIcon fontSize="small" />
             <PublishIcon fontSize="small" />
 

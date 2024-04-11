@@ -2,30 +2,50 @@ import React, { useState, useEffect } from "react";
 import "./styles/Feed.css";
 import TweetBox from "./TweetBox";
 import Posts from "./Posts";
-import { colRef } from "./Auth/config"; // Adjust the path to match your project structure
+import { colRef } from "./Auth/config"; 
 import { getDocs } from "firebase/firestore";
+import { doc,updateDoc } from "firebase/firestore";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
 
-  // Define fetchData function
+
   const fetchData = async () => {
     try {
       const snapshot = await getDocs(colRef);
-      const updatedPosts = snapshot.docs.map((doc) => doc.data());
+      const updatedPosts = snapshot.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() }; 
+      });
       setPosts(updatedPosts);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
   };
+  const handleBookmarkClick = async (postId) => {
+    console.log("Bookmark clicked for post ID:", postId);
+    const snapshot = await getDocs(colRef);
+    const updatedPosts = snapshot.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    })
+    const bookmarkedPost = updatedPosts.find((post) => post.id === postId);
+    console.log(bookmarkedPost)
+    bookmarkedPost.bookmark=!bookmarkedPost.bookmark;
 
+    await updateDoc(doc(colRef, postId), {
+      bookmark: bookmarkedPost.bookmark
+    });
+    console.log(bookmarkedPost)
+
+    
+
+  };
   useEffect(() => {
-    // Fetch data when component mounts
+
     fetchData();
   }, []);
 
   const handleTweetPosted = () => {
-    // Call fetchData function to fetch updated posts after a tweet is posted
+
     fetchData();
   };
 
@@ -42,9 +62,11 @@ const Feed = () => {
         {posts.map((post, index) => (
           <Posts
             key={index} // Use a unique key for each post
+            id={post.id}
             displayName={post.displayName}
             username={post.username}
             text={post.text}
+            onBookmarkClick={handleBookmarkClick}
             // Add other post properties as needed
           />
         ))}
