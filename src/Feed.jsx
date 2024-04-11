@@ -67,7 +67,8 @@ const Feed = () => {
             username={post.username}
             text={post.text}
             onBookmarkClick={handleBookmarkClick}
-            // Add other post properties as needed
+            isBookMark={post.bookmark}
+           
           />
         ))}
       </div>

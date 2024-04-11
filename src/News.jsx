@@ -38,20 +38,20 @@ const News = () => {
             <span>Sports</span><span> · </span><span>Trending</span>
           </div>
           <div className='font-bold'>
-          Jay Shah
+          #MIvsRCB
           </div>
           <div className='font-extralight text-sm'>
-            1512 posts
+            4086 posts
           </div>
         </div>        <div className='flex flex-col gap-0.75 p-4 mt-2 hover:bg-gray-200'>
           <div className='font-extralight text-sm   '>
-            <span>Sports</span><span> · </span><span>Trending</span>
+            <span>Entertainment</span><span> · </span><span>Trending</span>
           </div>
           <div className='font-bold'>
-          Jay Shah
+          Shah Rukh Khan
           </div>
           <div className='font-extralight text-sm'>
-            1512 posts
+            2712 posts
           </div>
         </div>       
        
