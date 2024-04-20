@@ -4,7 +4,7 @@ import TweetBox from "./TweetBox";
 import Posts from "./Posts";
 import { colRef } from "./Auth/config"; 
 import { getDocs } from "firebase/firestore";
-import { doc,updateDoc } from "firebase/firestore";
+import { doc,updateDoc,deleteDoc } from "firebase/firestore";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
@@ -39,6 +39,18 @@ const Feed = () => {
     
 
   };
+  const handleDeleteClick = async (postId) => {
+    try {
+
+      await deleteDoc(doc(colRef, postId));
+  
+     
+      setPosts(posts.filter(post => post.id !== postId));
+      console.log("Posts",posts)
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
   useEffect(() => {
 
     fetchData();
@@ -68,7 +80,7 @@ const Feed = () => {
             text={post.text}
             onBookmarkClick={handleBookmarkClick}
             isBookMark={post.bookmark}
-           
+            onDeleteClick={handleDeleteClick}
           />
         ))}
       </div>

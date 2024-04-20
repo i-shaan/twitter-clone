@@ -8,6 +8,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import Avatar from "@mui/material/Avatar";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { getDocs } from "firebase/firestore";
 import { colRef } from "./Auth/config";
 import { getDoc } from "firebase/firestore";
@@ -22,13 +23,17 @@ const Post = ({
   avatar,
   onBookmarkClick,
   isBookMark,
+  onDeleteClick
 }) => {
   const [bookmarked, setBookmarked] = useState(isBookMark);
-
+ 
   const handleBookmark = () => {
     onBookmarkClick(id);
     setBookmarked(!bookmarked); // Toggle bookmarked state
   };
+  const handleDelete = () =>{
+    onDeleteClick(id);
+  }
 
   return (
     <div className="flex items-start border-b border-gray-300 pb-10">
@@ -36,8 +41,9 @@ const Post = ({
         <Avatar src={avatar} />
       </div>
       <div className="flex-1 p-4">
-        <div className="mb-10">
-          <div>
+        <div className="mb-10 ">
+          <div className="flex justify-between ">
+            <div>
             <h3 className="text-base font-medium">
               {displayName}
               <span className="font-semibold text-gray-500">
@@ -45,6 +51,11 @@ const Post = ({
                 {username}
               </span>
             </h3>
+            </div>
+            <button className="" onClick={handleDelete}>
+              <DeleteIcon/>
+            </button>
+
           </div>
           <div className="text-sm">{text}</div>
         </div>
